@@ -9,9 +9,11 @@ RAG learn
 * Reranking of Retrieval Data(召回数据重排)
 * LLM Query Generation(大模型查询生成)
 
-## Data Chunking
+
+
 
 ## Chunk Vectorisation
+#### bge-M3
 
 ## Vector Data Store
 
