@@ -1,4 +1,6 @@
-go/data_chunk/chunk_output
-go/data_chunk/recursive_chunks/
 .go-version
 go/.go-version
+.idea/
+go/data_chunk/chunk_output
+go/data_chunk/recursive_chunks/
+
