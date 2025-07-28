@@ -9,15 +9,19 @@ RAG learn
 * Reranking of Retrieval Data(召回数据重排)
 * LLM Query Generation(大模型查询生成)
 
-
-
+## Data Chunking
+- 基于大模型的语义感知LlamaIndex SemanticSplitter
 
 ## Chunk Vectorisation
-#### bge-M3
+- 中小规模文本、实时性要求高：Sentence-BERT（如 all-MiniLM-L6-v2）、USE 轻量版。
+- 长文本（如论文、报告）：gte-large、Longformer、Cohere Command。
+- 多语言场景：mMiniLM-L12-v2（多语言版）、USE 多语言版。
+- 低资源环境：FastText、MiniLM 等轻量模型。
 
 ## Vector Data Store
 
 ## Data Retrieval
+#### bge-M3
 
 ## Reranking of Retrieval Data 
 
