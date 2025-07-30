@@ -57,3 +57,11 @@ D -->|未达标| F[调整重叠率/边界规则]
 
 #### 七、总结
 通过定向优化分块策略，可显著提升RAG系统召回精度，最高降低LLM幻觉率35%
+
+#### 八、开源项目
+- Awesome - Chunker
+  一站式聚合并复现了当下主流的文本分块技术。包含经典分块方法，如基于字符分割（支持手动设定固定字符长度分割，集成了 LangChain 的 CharacterTextSplitter 和 Llama Index 的 SentenceSplitter）、文档特定分割（针对 Markdown、Python 等不同文档类型有专门策略）、递归字符文本分割（利用 LangChain 的 RecursiveCharacterTextSplitter）。还包括基于 Sentence Transformer 语义分块，通过语义相似度对文本块进行聚类和合并；以及 Dense X Retrieval，以 “命题” 作为新的搜索单元进行分块；LumberChunker 借助大语言模型的理解能力动态分割文档；Meta - Chunking 通过句子之间的困惑度动态调整窗口大小并结合语义理解来实现更精准文本分段。
+- Chonkie：为 RAG 任务设计的轻量级文本分块库，以快速性能和易用著称。通过 Tiktoken、预计算缓存等技术实现高效分块，性能远超竞争对手。
+- Late Chunking：先进行全面处理再分类整理，利用长上下文 Embedding 模型切分块。文档越长，该策略就越有效，能够保留更多的上下文信息，生成的文本块更加完整和贴切。
+- ChunkRAG：显著改进了块级别过滤和细粒度相关性评估，将文本划分为语义上有意义的块，减少了生成不相关或幻觉信息的情况，能生成事实准确且连贯的响应。
+- SLM - qwen0.5：包括 simple - qwen - 0.5、topic - qwen - 0.5 和 summary - qwen - 0.5，分别针对不同需求进行分块。simple - qwen - 0.5 基于文档的结构元素识别边界；topic - qwen - 0.5 受到思维链推理的启发，识别文本中的主题来定义分块边界；summary - qwen - 0.5 不仅能识别文本边界，还能为每个文本块生成摘要，适合长文档问答任务。

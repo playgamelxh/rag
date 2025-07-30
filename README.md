@@ -26,3 +26,12 @@ RAG learn
 ## Reranking of Retrieval Data 
 
 ## LLM Query Generation
+
+## Open Code
+1. Python
+    - https://github.com/run-llama/llama_index
+    - https://github.com/openai/openai-python
+    - https://github.com/langchain-ai/langchain
+    - https://github.com/chonkie-inc/chonkie
+2. Go
+   - https://github.com/sashabaranov/go-openai

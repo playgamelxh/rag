@@ -55,3 +55,7 @@ Chunk Vectorisation（分片向量化） 是将文本分片（Chunks）转换为
 
 #### 总结
 RAG 系统中，向量化算法的核心目标是最大化向量对语义的表征能力，从而提升检索精度。实际应用中，需根据文本长度、资源限制、多模态需求等选择合适模型，其中 Sentence-BERT 系列 和 OpenAI Embeddings 因平衡性能和易用性，是目前 RAG 中最常用的向量化方案。
+
+
+#### 开源项目
+- https://github.com/run-llama/llama_index

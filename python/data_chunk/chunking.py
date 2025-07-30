@@ -1,6 +1,6 @@
 from llama_index.core import SimpleDirectoryReader
 from llama_index.core.node_parser import SemanticSplitterNodeParser, SentenceSplitter
-from llama_index.embeddings.openai import OpenAIEmbedding
+# from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 import os
 
@@ -9,7 +9,7 @@ import os
 with open("example_document.txt", "r", encoding="utf-8") as f:
     content = f.read()
 # 增强段落分割（根据文档实际标点调整）
-content = content.replace("。", "。\n").replace("！", "！\n").replace("？", "？\n").replace("中新网", "\n中新网")
+content = content.replace("。", "。\n").replace("！", "！\n").replace("？", "？\n")
 with open("example_document.txt", "w", encoding="utf-8") as f:
     f.write(content)
 
@@ -75,3 +75,32 @@ for i, node in enumerate(nodes):  # 打印前3个分片
     print(node.text[:200] + "...")  # 预览前200字符
 #     print(node.text)  # 预览全部字符
 
+# 6. 为每个分片生成向量（核心：向量化操作）
+chunk_vectors = []  # 存储 (分片文本, 向量) 键值对
+for i, node in enumerate(nodes):
+    # 生成当前分片的向量
+    vector = embed_model.get_text_embedding(node.text)
+    # 存储结果（可根据需求扩展为字典，包含分片ID、元数据等）
+    chunk_vectors.append({
+        "chunk_id": i + 1,
+        "text": node.text,
+        "vector": vector,
+        "vector_dim": len(vector)  # 向量维度
+    })
+    # 打印向量化进度
+    if (i + 1) % 5 == 0:  # 每5个分片打印一次
+        print(f"已完成 {i + 1}/{len(nodes)} 个分片的向量化")
+
+# 7. 查看向量化结果（示例：打印前2个分片的向量信息）
+print("\n===== 向量化结果示例 =====")
+for item in chunk_vectors[:2]:
+    print(f"\n分片 {item['chunk_id']}：")
+    print(f"文本预览：{item['text'][:100]}...")
+    print(f"向量维度：{item['vector_dim']}")
+    print(f"向量前5个值：{item['vector'][:5]}...")  # 仅展示前5个元素
+
+# （可选）将向量保存到文件（如JSON），供后续RAG检索使用
+import json
+with open("chunk_vectors.json", "w", encoding="utf-8") as f:
+    json.dump(chunk_vectors, f, ensure_ascii=False, indent=2)
+print("\n向量已保存到 chunk_vectors.json")
