@@ -33,5 +33,6 @@ RAG learn
     - https://github.com/openai/openai-python
     - https://github.com/langchain-ai/langchain
     - https://github.com/chonkie-inc/chonkie
+    - https://github.com/volcengine/ai-app-lab
 2. Go
    - https://github.com/sashabaranov/go-openai
