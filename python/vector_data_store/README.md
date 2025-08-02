@@ -30,3 +30,13 @@ python -m pip install pymilvus==2.6.0b0
 python -c "from pymilvus import Collection"
 
 ```
+
+## zilliz/attu
+```azure
+https://github.com/zilliztech/attu
+docker network create milvus-net
+docker run -d --name milvus_standalone --network milvus-net -p 19530:19530 -p 9091:9091 milvusdb/milvus:latest 
+docker run -d --name zilliz_attu --network milvus-net -p 3000:3000 -e MILVUS_URL=milvus_standalone:19530 zilliz/attu:latest
+# http://localhost:3000/#/connect
+# 链接方式milvus-standalone:19530
+```

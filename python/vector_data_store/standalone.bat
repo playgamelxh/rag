@@ -5,9 +5,9 @@
 @REM  to you under the Apache License, Version 2.0 (the
 @REM  "License"); you may not use this file except in compliance
 @REM  with the License. You may obtain a copy of the License at
-@REM 
+@REM
 @REM    http://www.apache.org/licenses/LICENSE-2.0
-@REM 
+@REM
 @REM  Unless required by applicable law or agreed to in writing, software
 @REM  distributed under the License is distributed on an "AS IS" BASIS,
 @REM  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,6 +64,7 @@ if not exist "user.yaml" (
 docker run -d ^
     --name milvus-standalone ^
     --security-opt seccomp:unconfined ^
+    --network milvus-net ^
     -e ETCD_USE_EMBED=true ^
     -e ETCD_DATA_DIR=/var/lib/milvus/etcd ^
     -e ETCD_CONFIG_PATH=/milvus/configs/embedEtcd.yaml ^
