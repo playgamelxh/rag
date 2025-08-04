@@ -4,4 +4,6 @@
 go/.go-version
 go/data_chunk/chunk_output
 go/data_chunk/recursive_chunks/
-
+python/venv
+python/video/venv
+python/vector_data_store/volumes

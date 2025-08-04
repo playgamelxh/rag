@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>豆包大模型生成文字转视频</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body class="bg-light">
+    <div class="container py-4">
+        <header class="mb-4">
+            <h1 class="text-primary"><i class="bi bi-play-circle-fill me-2"></i>豆包大模型生成文字转视频</h1>
+        </header>
+
+        <div class="row gap-4">
+            <!-- 左侧视频播放列表 (占2/3宽度) -->
+            <div class="col-md-7">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-white">
+                        <h2 class="h5 mb-0"><i class="bi bi-film me-2"></i>视频播放列表</h2>
+                    </div>
+                    <div class="card-body p-0" id="videoContainer">
+                        {% if videos and videos|length > 0 %}
+                        <div class="row g-3 p-3">
+                            {% for video in videos %}
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="ratio ratio-16x9">
+                                        <video controls class="rounded-top w-100">
+                                            <source src="{{ url_for('static', filename='videos/' + video) }}" type="video/mp4">
+                                            您的浏览器不支持视频播放
+                                        </video>
+                                    </div>
+                                    <div class="card-body p-3">
+                                        <h5 class="card-title fs-6 text-truncate">{{ video }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="text-center py-5 text-muted" id="emptyState">
+                            <i class="bi bi-film fs-1 mb-3 d-block"></i>
+                            <p>暂无生成的视频，请在右侧输入内容生成视频</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧输入区域 (占1/3宽度) -->
+            <div class="col-md-4">
+                <div class="card shadow-sm sticky-top" style="top: 20px;">
+                    <div class="card-header bg-white">
+                        <h2 class="h5 mb-0"><i class="bi bi-chat-dots me-2"></i>对话历史</h2>
+                    </div>
+                    <div class="card-body p-0" style="max-height: 400px; overflow-y: auto;">
+                        <div id="conversationHistory" class="p-3">
+                            <!-- 对话历史将通过JS动态添加 -->
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top">
+                        <form id="textForm">
+                            <div class="mb-3">
+                                <label for="textInput" class="form-label visually-hidden">视频内容描述</label>
+                                <textarea class="form-control" id="textInput" name="text" rows="3" placeholder="请输入视频内容描述..." required style="resize: vertical;"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 py-2">
+                                <i class="bi bi-paper-plane me-2"></i>生成
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 自定义JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
