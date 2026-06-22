@@ -2,11 +2,11 @@
 RAG learn
 
 ## RAG step
-* Data Chunking(数据分片)
-* Chunk Vectorisation(分片数据向量化)
-* Vector Data Store(向量数据存储)
-* Data Retrieval(数据检索召回)
-* Reranking of Retrieval Data(召回数据重排)
+* [Data Chunking(数据分片)](README_DATA_CHUNKING.md)
+* [Chunk Vectorisation(分片数据向量化)](README_CHUNK_VECTORISATION.md)
+* [Vector Data Store(向量数据存储)](README_VECTOR_DATA_STORE.md)
+* [Data Retrieval(数据检索召回)](README_DATA_RETRIEVAL.md)
+* [Reranking of Retrieval Data(召回数据重排)](README_DATA_RERANKING_OF_RETRIEVAL_DATA.md)
 * LLM Query Generation(大模型查询生成)
 
 ## Data Chunking
@@ -33,10 +33,17 @@ RAG learn
    - 轻量、简单、开源：Qdrant、Chroma。
    - 极致性能，嵌入到代码：FAISS。
    - 已有 ES 集群，需混合检索：Elasticsearch。
-## Data Retrieval
-#### bge-M3
 
-## Reranking of Retrieval Data 
+## Data Retrieval
+- 核心策略：单向量检索、多查询检索（Multi-Query）、混合检索（向量 + BM25）、上下文感知检索。
+- 优化技巧：查询扩展、动态 Top-K 调整、结果去重、元数据过滤。
+- 评估指标：Recall@K、Precision@K、NDCG@K、MRR。
+
+## Reranking of Retrieval Data
+- 核心模型：CrossEncoder（如 ms-marco-MiniLM-L-6-v2）、BGE-Reranker（中文首选）。
+- 策略：单阶段重排、多阶段重排、混合重排（向量相似度 + 重排分数）。
+- 关键参数：初步检索 Top-30~100，最终返回 Top-3~10，混合权重 α=0.3（向量）+ β=0.7（重排）。
+
 
 ## LLM Query Generation
 
