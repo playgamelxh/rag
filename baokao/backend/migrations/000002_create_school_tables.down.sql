@@ -1,3 +1,0 @@
-DROP TABLE IF EXISTS major_scores;
-DROP TABLE IF EXISTS majors;
-DROP TABLE IF EXISTS schools;
