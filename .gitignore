@@ -10,6 +10,7 @@ RAG/python/vector_data_store/volumes
 MLP/data
 CNN/data
 myenv/
+myvenv/
 other/myvenv
 other/data
 airllm/myvenv
